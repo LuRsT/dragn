@@ -16,7 +16,7 @@ class D10(dragn):
     def _roll(self, rolls=1):
         while rolls > 0:
             results = []
-            for i in range(0, self.dices):
+            for i in range(self.dices):
                 results += self._add_result([])
             rolls -= 1
         return results
@@ -54,3 +54,15 @@ class D10(dragn):
             if r == 1:
                 ones += 1
         return ones
+
+    @property
+    def result(self):
+        """ Helper method to get the result
+        Returns -1 in case of critical fail, 0 for fail and 1 for success
+        """
+        if self.successes < 0:
+            return -1
+        elif self.successes == 0:
+            return 0
+        else:
+            return 1
