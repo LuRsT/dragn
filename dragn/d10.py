@@ -1,8 +1,7 @@
 import random
-import dragn
 
 
-class D10(dragn):
+class D10(object):
     def __init__(self, dices=None, difficulty=None, results=[]):
         self.dices = dices
         self.difficulty = difficulty
@@ -22,6 +21,9 @@ class D10(dragn):
         return results
 
     def _add_result(self, sub_results=[]):
+        """ Recursive method that rolls a dice and
+        returns the value, if the value is 10 it rolls again
+        """
         result = random.randint(1, 10)
         sub_results.append(result)
         if result == 10:
