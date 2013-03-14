@@ -25,7 +25,7 @@ class D10TestCase(unittest.TestCase):
         assert o.result == -1
 
     def test_roll(self):
-        o = dragn.D10(difficulty=6, dices=6)
-        o.roll(rolls=5)
+        o = dragn.D10(difficulty=6, dice=6)
+        o.roll()
         assert o.fails >= 0
         assert o.successes >= 0

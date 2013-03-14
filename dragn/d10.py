@@ -2,26 +2,24 @@ import random
 
 
 class D10(object):
-    def __init__(self, dices=None, difficulty=None, results=[]):
-        self.dices = dices
+    def __init__(self, dice=None, difficulty=None, results=[]):
+        self.dice       = dice
         self.difficulty = difficulty
+        self.results    = results
+        self._reroll    = False
+
+    def roll(self):
+        """ Rolls a die
+        Stores the results in self.results and returns them also
+        """
+        results = []
+        for i in range(self.dice):
+            results += self._add_result([])
         self.results = results
-        self._reroll = False
-
-    def roll(self, rolls=1):
-        self.results = self._roll(rolls)
-        return None
-
-    def _roll(self, rolls=1):
-        while rolls > 0:
-            results = []
-            for i in range(self.dices):
-                results += self._add_result([])
-            rolls -= 1
         return results
 
     def _add_result(self, sub_results=[]):
-        """ Recursive method that rolls a dice and
+        """ Recursive method that rolls a die and
         returns the value, if the value is 10 it rolls again
         """
         result = random.randint(1, 10)
