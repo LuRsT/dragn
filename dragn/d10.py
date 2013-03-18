@@ -5,7 +5,7 @@ class D10(object):
     def __init__(self, dice=None, difficulty=None, results=[]):
         self.dice       = dice
         self.difficulty = difficulty
-        self.results    = results
+        self._results   = results
         self._reroll    = False
 
     def roll(self):
@@ -15,8 +15,8 @@ class D10(object):
         results = []
         for i in range(self.dice):
             results += self._add_result([])
-        self.results = results
-        return results
+        self._results = results
+        return self._results
 
     def _add_result(self, sub_results=[]):
         """ Recursive method that rolls a die and
@@ -28,6 +28,18 @@ class D10(object):
             self._reroll = True
             return self._add_result(sub_results)
         return sub_results
+
+
+    @property
+    def results(self):
+        if self._results == []:
+            self.roll()
+
+        return self._results
+
+    @results.setter
+    def results(self, value):
+        self._results = value
 
     @property
     def fails(self):

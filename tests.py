@@ -28,4 +28,11 @@ class D10TestCase(unittest.TestCase):
         o = dragn.D10(difficulty=6, dice=6)
         o.roll()
         assert o.fails >= 0
+        assert o.result in [-1, 0, 1]
+        assert len(o.results) >= 6
+
+    def test_no_roll(self):
+        o = dragn.D10(difficulty=6, dice=6)
+        assert o.fails >= 0
         assert o.successes >= 0
+        assert len(o.results) >= 6
