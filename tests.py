@@ -12,10 +12,10 @@ class D10TestCase(unittest.TestCase):
 
     def test_fails(self):
         o = dragn.D10()
-        o.results = [4, 5, 6, 7, 8, 9]
+        o.results = [4, 5, 4, 4]
         o.difficulty = 6
-        assert o.fails == 2
-        assert o.result == 1
+        assert o.fails == 4
+        assert o.result == 0
 
     def test_criticalfail(self):
         o = dragn.D10()
@@ -36,3 +36,6 @@ class D10TestCase(unittest.TestCase):
         assert o.fails >= 0
         assert o.successes >= 0
         assert len(o.results) >= 6
+
+if __name__ == '__main__':
+        unittest.main()
