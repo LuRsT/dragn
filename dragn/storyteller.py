@@ -1,7 +1,7 @@
 import random
 
 
-class D10(object):
+class StoryTeller(object):
     def __init__(self, dice=None, difficulty=None, results=[]):
         self.dice       = dice
         self.difficulty = difficulty
@@ -69,7 +69,8 @@ class D10(object):
 
     @property
     def result(self):
-        """ Helper method to get the result
+        """
+        Helper method to get the result
         Returns -1 in case of critical fail, 0 for fail and 1 for success
         """
         if self.successes < 0:
