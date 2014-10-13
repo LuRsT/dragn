@@ -2,6 +2,7 @@ import random
 
 
 class StoryTeller(object):
+
     def __init__(self, dice=None, difficulty=None, results=[]):
         self.dice       = dice
         self.difficulty = difficulty
@@ -9,8 +10,10 @@ class StoryTeller(object):
         self._reroll    = False
 
     def roll(self):
-        """ Rolls a die
+        """
+        Rolls a die
         Stores the results in self.results and returns them also
+
         """
         results = []
         for i in range(self.dice):
@@ -19,8 +22,10 @@ class StoryTeller(object):
         return self._results
 
     def _add_result(self, sub_results=[]):
-        """ Recursive method that rolls a die and
+        """
+        Recursive method that rolls a die and
         returns the value, if the value is 10 it rolls again
+
         """
         result = random.randint(1, 10)
         sub_results.append(result)
@@ -28,7 +33,6 @@ class StoryTeller(object):
             self._reroll = True
             return self._add_result(sub_results)
         return sub_results
-
 
     @property
     def results(self):
@@ -72,6 +76,7 @@ class StoryTeller(object):
         """
         Helper method to get the result
         Returns -1 in case of critical fail, 0 for fail and 1 for success
+
         """
         if self.successes < 0:
             return -1

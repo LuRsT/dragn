@@ -5,6 +5,7 @@ from dragn.dice import D10
 
 
 class StoryTellerTestCase(unittest.TestCase):
+
     def test_success(self):
         o = dragn.StoryTeller()
         o.results = [4, 5, 6, 7, 8, 9]
@@ -38,6 +39,7 @@ class StoryTellerTestCase(unittest.TestCase):
         assert o.fails >= 0
         assert o.successes >= 0
         assert len(o.results) >= 6
+
 
 class DiceTestCase(unittest.TestCase):
     def test_faces(self):
