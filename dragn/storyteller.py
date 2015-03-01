@@ -1,13 +1,13 @@
-import random
+from random import randint as generate_random_integer
 
 
 class StoryTeller(object):
 
     def __init__(self, dice=None, difficulty=None, results=[]):
-        self.dice       = dice
+        self.dice = dice
         self.difficulty = difficulty
-        self._results   = results
-        self._reroll    = False
+        self._results = results
+        self._reroll = False
 
     def roll(self):
         """
@@ -27,7 +27,7 @@ class StoryTeller(object):
         returns the value, if the value is 10 it rolls again
 
         """
-        result = random.randint(1, 10)
+        result = generate_random_integer(1, 10)
         sub_results.append(result)
         if result == 10:
             self._reroll = True
