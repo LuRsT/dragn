@@ -1,20 +1,19 @@
 dragn
 =====
 
-RPG Dice System Lib
+Dice System library (aka random.randint as dice)
 
-A lib to help create RPG games, will have many systems in order to use a lot of traditional tabletop RPGs rules.
+A library that makes something simple like a random integer even simpler.
 
-    dice = dragn.D10(difficulty=6, dice=6)
-    dice.roll(rolls=5)
+Or at least, makes it look a bit more like rolling dice.
 
-    # Will the <character> be able to do whatever he wanted to?
-    print dice.successes
-
-## Roadmap
-
-* [D10](https://en.wikipedia.org/wiki/Storytelling_System)
-* D&D
-* AD&D
-* D&D 3rd edition
-* And others...
+```python
+>> from dragn.dice import D6
+>>> D6()
+1
+>>> from dragn.dice import D8
+>>> f"You roll the die and the result is {D8()}"
+'You roll the die and the result is 4'
+>>> f"You roll 3 dice and you get {[D8() for _ in range(3)]}"
+>>> 'You roll 3 dice and you get [3, 1, 8]'
+```
