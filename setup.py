@@ -5,8 +5,9 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
+    # Project
     name="dragn",
-    version="0.0.1",
+    version="0.0.2",
     description="A library to emulate rolling dice",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -20,7 +21,9 @@ setuptools.setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3 :: Only",
     ],
+    # Author
     author="Gil Goncalves",
     author_email="lursty@gmail.com",
-    packages=["dragn"],
+    # Code
+    packages=setuptools.find_packages(),
 )
