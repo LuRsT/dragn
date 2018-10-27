@@ -16,6 +16,16 @@ A library that makes something simple like a random integer even simpler.
 
 Or at least, makes it look a bit more like rolling dice.
 
+
+### How to install
+
+```shell
+$ pip install dragn
+```
+
+
+### How to use
+
 ```python
 >> from dragn.dice import D6
 >>> D6()
