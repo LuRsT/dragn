@@ -1,12 +1,13 @@
 from functools import partial
 
-from dragn.dice import D4, D6, D8, D10, D12, D20, roller
+from dragn.dice import D4, D6, D8, D10, D12, D20
 from dragn.dice.die_and_roller import roller
 
 
 class TestRoller:
     def test_roller_very_naive(self):
-        fake_randomness = lambda max_value, randomness: 4
+        def fake_randomness(max_value, randomness):
+            return 4
 
         result = roller(0, randomness=fake_randomness)
 
