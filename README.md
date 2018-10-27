@@ -6,6 +6,8 @@ dragn
 [![Build Status](https://travis-ci.org/LuRsT/dragn.svg?branch=master)](https://travis-ci.org/LuRsT/dragn)
 [![codecov](https://codecov.io/gh/LuRsT/dragn/branch/master/graph/badge.svg)](https://codecov.io/gh/LuRsT/dragn)
 [![License](https://img.shields.io/github/license/LuRsT/dragn.svg)](LICENSE)
+[![Downloads](https://pepy.tech/badge/dragn)](https://pepy.tech/project/dragn)
+[![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 
 Dice system library (aka `random.randint` as dice).
@@ -13,6 +15,16 @@ Dice system library (aka `random.randint` as dice).
 A library that makes something simple like a random integer even simpler.
 
 Or at least, makes it look a bit more like rolling dice.
+
+
+### How to install
+
+```shell
+$ pip install dragn
+```
+
+
+### How to use
 
 ```python
 >> from dragn.dice import D6
