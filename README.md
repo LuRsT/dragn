@@ -1,7 +1,14 @@
 dragn
 =====
 
-Dice System library (aka random.randint as dice)
+[![PyPI version](https://img.shields.io/pypi/v/dragn.svg)](https://pypi.org/project/dragn/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/dragn.svg)](https://pypi.org/project/dragn/)
+[![Build Status](https://travis-ci.org/LuRsT/dragn.svg?branch=master)](https://travis-ci.org/LuRsT/dragn)
+[![codecov](https://codecov.io/gh/LuRsT/dragn/branch/master/graph/badge.svg)](https://codecov.io/gh/LuRsT/dragn)
+[![License](https://img.shields.io/github/license/LuRsT/dragn.svg)](LICENSE)
+
+
+Dice system library (aka `random.randint` as dice).
 
 A library that makes something simple like a random integer even simpler.
 
