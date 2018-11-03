@@ -1,11 +1,9 @@
-from functools import partial
-
-from dragn.dice.die_and_roller import roller
+from dragn.dice.die import DieBuilder
 
 
-D4 = partial(roller, 4)
-D6 = partial(roller, 6)
-D8 = partial(roller, 8)
-D10 = partial(roller, 10)
-D12 = partial(roller, 12)
-D20 = partial(roller, 20)
+D4 = DieBuilder(4)
+D6 = DieBuilder(6)
+D8 = DieBuilder(8)
+D10 = DieBuilder(10)
+D12 = DieBuilder(12)
+D20 = DieBuilder(20)
