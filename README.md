@@ -1,4 +1,4 @@
-dragn
+Dragn
 =====
 
 [![PyPI version](https://img.shields.io/pypi/v/dragn.svg)](https://pypi.org/project/dragn/)
