@@ -29,8 +29,22 @@ class DieBuilder:
     def __rmul__(self, value: int) -> Callable:
         return self.multiply(value)
 
+    def __add__(self, value: Any) -> Callable:
+        return self.add(value)
+
+    def __radd__(self, value: Any) -> Callable:
+        return self.add(value)
+
+    def add(self, other_value: int) -> Callable:
+        def _tumbler(dice: List) -> Callable:
+            real_dice = filter(lambda d: isinstance(d, DieBuilder), dice)
+            ints = filter(lambda d: isinstance(d, int), dice)
+            return lambda: sum([d() for d in real_dice]) + sum(ints)
+
+        return _tumbler([self, other_value])
+
     def multiply(self, other_value: int) -> Callable:
-        def _roller(dice: List) -> Callable:
+        def _tumbler(dice: List) -> Callable:
             return lambda: sum([d() for d in dice])
 
-        return _roller([self.function for _ in range(other_value)])
+        return _tumbler([self.function for _ in range(other_value)])
