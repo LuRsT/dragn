@@ -1,6 +1,3 @@
-from functools import partial
-from typing import Callable
-
 from dragn.dice import D4, D6, D8, D10, D12, D20
 from dragn.dice.die import DieBuilder
 
