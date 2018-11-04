@@ -1,3 +1,6 @@
+from typing import Generator
+
+import pytest
 from dragn.dice import D4, D6, D8, D10, D12, D20
 from dragn.dice.die import DieBuilder
 
@@ -26,13 +29,46 @@ class TestDie:
             assert die() in results_range
 
 
+@pytest.fixture
+def D1() -> Generator:
+    yield DieBuilder(1)
+
+
 class TestDieBuilderForMultiDie:
-    def test_creating_dice(self) -> None:
-        multi_die = D6 * 2
+    def test_creating_multi_die_by_multiplication(self, D1: DieBuilder) -> None:
+        multi_die = D1 * 2
 
-        assert multi_die() in range(2, 13)
+        assert multi_die() == 2
 
-    def test_creating_dice_in_different_order_of_multiplication(self) -> None:
-        multi_die = 2 * D6
+    def test_creating_multi_die_by_multiplication_in_different_order(
+        self, D1: DieBuilder
+    ) -> None:
+        multi_die = 2 * D1
 
-        assert multi_die() in range(2, 13)
+        assert multi_die() == 2
+
+    def test_creating_multi_die_by_addition(self, D1: DieBuilder) -> None:
+        multi_die = 1 + D1
+
+        assert multi_die() == 2
+
+    def test_creating_multi_die_by_addition_in_different_order(
+        self, D1: DieBuilder
+    ) -> None:
+        multi_die = D1 + 1
+
+        assert multi_die() == 2
+
+    def test_creating_multi_die_by_addition_with_other_die(
+        self, D1: DieBuilder
+    ) -> None:
+        multi_die = D1 + D1
+
+        assert multi_die() == 2
+
+    @pytest.mark.skip
+    def test_creating_multi_die_by_addition_with_other_dice(
+        self, D1: DieBuilder
+    ) -> None:
+        multi_die = D1 + D1 + D1
+        assert multi_die() == 3
