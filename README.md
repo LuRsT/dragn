@@ -35,4 +35,10 @@ $ pip install dragn
 'You roll the die and the result is 4'
 >>> f"You roll 3 dice and you get {[D8() for _ in range(3)]}"
 >>> 'You roll 3 dice and you get [3, 1, 8]'
+>>> from dragn.dice import D4
+>>> four_dice = D4 * 4
+>>> f"You roll 4 dice and the sum is {four_dice()}"
+'You roll 4 dice and the sum is 15'
+>>> f"You roll 4 dice again and the sum is {four_dice()}"
+'You roll 4 dice again and the sum is 13'
 ```
