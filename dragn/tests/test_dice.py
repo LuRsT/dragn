@@ -27,6 +27,7 @@ class TestDie:
         }
         for die, results_range in configured_dice.items():
             assert die() in results_range
+            assert die.max_value == max(list(results_range))
 
 
 @pytest.fixture

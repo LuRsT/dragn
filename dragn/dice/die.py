@@ -15,6 +15,7 @@ class Die:
 class DieBuilder:
     def __init__(self, max_value: int) -> None:
         self.function = partial(self.die_builder, max_value)
+        self.max_value = max_value
 
     @staticmethod
     def die_builder(max_value: int, randomness: Callable = random.randint) -> Any:
