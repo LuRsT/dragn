@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     # Project
     name="dragn",
-    version="0.0.6",
+    version="0.0.7",
     description="A library to emulate rolling dice",
     long_description=long_description,
     long_description_content_type="text/markdown",
