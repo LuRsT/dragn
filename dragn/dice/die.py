@@ -49,3 +49,6 @@ class DieBuilder:
             return lambda: sum([d() for d in dice])
 
         return _tumbler([self.function for _ in range(other_value)])
+
+    def __str__(self):
+        return f"D{self.max_value}"
