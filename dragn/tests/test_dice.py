@@ -73,3 +73,9 @@ class TestDieBuilderForMultiDie:
     ) -> None:
         multi_die = D1 + D1 + D1
         assert multi_die() == 3
+
+    def test_creating_multi_die_by_multiplication_with_other_dice(
+        self, D1: DieBuilder
+    ) -> None:
+        multi_die = D1 * D1 * D1
+        assert multi_die() == 1
