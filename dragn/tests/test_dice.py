@@ -68,7 +68,6 @@ class TestDieBuilderForMultiDie:
 
         assert multi_die() == 2
 
-    @pytest.mark.skip
     def test_creating_multi_die_by_addition_with_other_dice(
         self, D1: DieBuilder
     ) -> None:

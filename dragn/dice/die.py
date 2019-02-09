@@ -38,7 +38,7 @@ class DieBuilder:
 
     def add(self, other_value: int) -> Callable:
         def _tumbler(dice: List) -> Callable:
-            real_dice = filter(lambda d: isinstance(d, DieBuilder), dice)
+            real_dice = filter(lambda d: callable(d), dice)
             ints = filter(lambda d: isinstance(d, int), dice)
             return lambda: sum([d() for d in real_dice]) + sum(ints)
 
