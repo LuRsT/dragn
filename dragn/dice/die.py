@@ -1,5 +1,6 @@
 import random
-from functools import partial
+import operator
+from functools import partial, reduce
 from typing import Any, Callable, List
 
 
@@ -38,17 +39,22 @@ class DieBuilder:
 
     def add(self, other_value: int) -> Callable:
         def _tumbler(dice: List) -> Callable:
-            real_dice = filter(lambda d: callable(d), dice)
+            callables = filter(lambda d: callable(d), dice)
             ints = filter(lambda d: isinstance(d, int), dice)
-            return lambda: sum([d() for d in real_dice]) + sum(ints)
+            return lambda: sum([d() for d in callables]) + sum(ints)
 
         return _tumbler([self, other_value])
 
     def multiply(self, other_value: int) -> Callable:
-        def _tumbler(dice: List) -> Callable:
-            return lambda: sum([d() for d in dice])
+        def prod(iterable):
+            return reduce(operator.mul, iterable, 1)
 
-        return _tumbler([self.function for _ in range(other_value)])
+        def _tumbler(dice: List) -> Callable:
+            callables = filter(lambda d: callable(d), dice)
+            ints = filter(lambda d: isinstance(d, int), dice)
+            return lambda: prod([d() for d in callables]) * prod(ints)
+
+        return _tumbler([self, other_value])
 
     def __str__(self):
         return f"D{self.max_value}"
