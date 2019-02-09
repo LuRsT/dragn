@@ -1,7 +1,7 @@
 import operator
 import random
 from functools import partial, reduce
-from typing import Any, Callable, List
+from typing import Any, Callable, Iterable, List
 
 
 class Die:
@@ -46,7 +46,7 @@ class DieBuilder:
         return _tumbler([self, other_value])
 
     def multiply(self, other_value: int) -> Callable:
-        def prod(iterable):
+        def prod(iterable: Iterable) -> int:
             return reduce(operator.mul, iterable, 1)
 
         def _tumbler(dice: List) -> Callable:
@@ -56,5 +56,5 @@ class DieBuilder:
 
         return _tumbler([self, other_value])
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"D{self.max_value}"
