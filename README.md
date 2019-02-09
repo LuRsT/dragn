@@ -17,6 +17,23 @@ A library that makes something simple like a random integer even simpler.
 Or at least, makes it look a bit more like rolling dice.
 
 
+### Why?
+
+I wanted a better API to rolling dice using Python, and the usual `random.randint` is very good,
+but doesn't really represent rolling dice quite the way I imagine it.
+
+This was a good learning experiment, but I'm not expecting anyone to use it.
+
+
+### Who is this for?
+
+People building RPGs, or games that would involve dice and who care about how their code looks
+like.
+
+I may be biased, but I really believe that this library provides a much better interface than
+pure `random.randint`.
+
+
 ### How to install
 
 ```shell
@@ -42,3 +59,5 @@ $ pip install dragn
 >>> f"You roll 4 dice again and the sum is {four_dice()}"
 'You roll 4 dice again and the sum is 13'
 ```
+
+For more examples, check the [tests](https://github.com/LuRsT/dragn/blob/master/dragn/tests/test_dice.py)
