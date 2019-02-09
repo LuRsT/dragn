@@ -1,5 +1,5 @@
-import random
 import operator
+import random
 from functools import partial, reduce
 from typing import Any, Callable, List
 
