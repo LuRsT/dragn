@@ -79,3 +79,8 @@ class TestDieBuilderForMultiDie:
     ) -> None:
         multi_die = D1 * D1 * D1
         assert multi_die() == 1
+
+    def test_running_multi_die_twice(self, D1: DieBuilder) -> None:
+        multi_die = 3 * D6
+        assert multi_die() >= 3 <= 6 * 3
+        assert multi_die() >= 3 <= 6 * 3
