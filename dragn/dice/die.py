@@ -1,7 +1,8 @@
-import operator
 import random
-from functools import partial, reduce
-from typing import Any, Callable, Iterable, List
+from functools import partial
+from typing import Any, Callable, Union
+
+from dragn.dice.tumbler import MulTumbler, SumTumbler, Tumbler
 
 
 class Die:
@@ -15,46 +16,33 @@ class Die:
 
 class DieBuilder:
     def __init__(self, max_value: int) -> None:
-        self.function = partial(self.die_builder, max_value)
+        self.the_die = partial(self._die_builder, max_value)
         self.max_value = max_value
 
     @staticmethod
-    def die_builder(max_value: int, randomness: Callable = random.randint) -> Any:
+    def _die_builder(max_value: int, randomness: Callable = random.randint) -> Any:
         return Die(max_value, randomness)()
 
     def __call__(self) -> Any:
-        return self.function()
+        return self.the_die()
 
-    def __mul__(self, value: int) -> Callable:
-        return self.multiply(value)
+    def __mul__(self, value: Union["DieBuilder", int, Tumbler]) -> Tumbler:
+        return self._multiply(value)
 
-    def __rmul__(self, value: int) -> Callable:
-        return self.multiply(value)
+    def __rmul__(self, value: Union["DieBuilder", int, Tumbler]) -> Tumbler:
+        return self._multiply(value)
 
-    def __add__(self, value: Any) -> Callable:
-        return self.add(value)
+    def _multiply(self, other_value: Union["DieBuilder", int, Tumbler]) -> Tumbler:
+        return MulTumbler([self, other_value])
 
-    def __radd__(self, value: Any) -> Callable:
-        return self.add(value)
+    def __add__(self, value: Union["DieBuilder", int, Tumbler]) -> Tumbler:
+        return self._add(value)
 
-    def add(self, other_value: int) -> Callable:
-        def _tumbler(dice: List) -> Callable:
-            callables = filter(lambda d: callable(d), dice)
-            ints = filter(lambda d: isinstance(d, int), dice)
-            return lambda: sum([d() for d in callables]) + sum(ints)
+    def __radd__(self, value: Union["DieBuilder", int, Tumbler]) -> Tumbler:
+        return self._add(value)
 
-        return _tumbler([self, other_value])
-
-    def multiply(self, other_value: int) -> Callable:
-        def prod(iterable: Iterable) -> int:
-            return reduce(operator.mul, iterable, 1)
-
-        def _tumbler(dice: List) -> Callable:
-            callables = filter(lambda d: callable(d), dice)
-            ints = filter(lambda d: isinstance(d, int), dice)
-            return lambda: prod([d() for d in callables]) * prod(ints)
-
-        return _tumbler([self, other_value])
+    def _add(self, other_value: Union["DieBuilder", int, Tumbler]) -> Tumbler:
+        return SumTumbler([self, other_value])
 
     def __str__(self) -> str:
         return f"D{self.max_value}"
