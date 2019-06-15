@@ -44,20 +44,18 @@ $ pip install dragn
 ### How to use
 
 ```python
->> from dragn.dice import D6
+>> from dragn.dice import D4, D6, D8
 >>> D6()
 1
->>> from dragn.dice import D8
 >>> f"You roll the die and the result is {D8()}"
 'You roll the die and the result is 4'
 >>> f"You roll 3 dice and you get {[D8() for _ in range(3)]}"
 >>> 'You roll 3 dice and you get [3, 1, 8]'
->>> from dragn.dice import D4
 >>> four_dice = D4 * 4
->>> f"You roll 4 dice and the sum is {four_dice()}"
-'You roll 4 dice and the sum is 15'
->>> f"You roll 4 dice again and the sum is {four_dice()}"
-'You roll 4 dice again and the sum is 13'
+>>> f"You roll 4 dice and the results are {four_dice()}"
+'You roll 4 dice and the results are (4, 3, 1, 2)'
+>>> f"You roll two dice and the results are {two_dice()}"
+'You roll two dice and the results are (3, 4)'
 ```
 
 For more examples, check the [tests](https://github.com/LuRsT/dragn/blob/master/dragn/tests/test_dice.py)
