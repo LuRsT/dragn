@@ -1,6 +1,4 @@
-import operator
-from functools import reduce
-from typing import Any, Iterable, List, Union
+from typing import Any, List, Tuple
 
 
 class Tumbler:
@@ -8,19 +6,32 @@ class Tumbler:
         self.callables = list(filter(lambda d: callable(d), dice))
         self.ints = list(filter(lambda d: isinstance(d, int), dice))
 
-    def __call__(self) -> Union[Any, int]:
+    def __call__(self) -> Tuple[Any, ...]:
         raise NotImplementedError()
 
 
 class SumTumbler(Tumbler):
-    def __call__(self) -> Union[Any, int]:
-        return sum([d() for d in self.callables]) + sum(self.ints)
+    def __init__(self, dice: List) -> None:
+        super().__init__(dice)
+
+        if len(self.ints):
+            raise TypeError("Cannot use integers in SumTumbler")
+
+    def __call__(self) -> Tuple[Any, ...]:
+        dice = [die for die in self.callables if not isinstance(die, SumTumbler)]
+        tumblers = [
+            tumbler for tumbler in self.callables if isinstance(tumbler, SumTumbler)
+        ]
+
+        return tuple([d() for d in dice]) + tuple(*[t() for t in tumblers])
 
 
 class MulTumbler(Tumbler):
-    def __call__(self) -> Union[Any, int]:
-        return self._prod([d() for d in self.callables]) * self._prod(self.ints)
+    def __init__(self, dice: List) -> None:
+        super().__init__(dice)
 
-    @staticmethod
-    def _prod(iterable: Iterable) -> int:
-        return reduce(operator.mul, iterable, 1)
+        if not len(self.callables) or not len(self.ints):
+            raise TypeError("Cannot multiply callables in MulTumbler")
+
+    def __call__(self) -> Tuple[Any, ...]:
+        return tuple([self.callables[0]() for _ in range(self.ints[0])])
