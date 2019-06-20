@@ -9,7 +9,7 @@
     <a href="https://codecov.io/gh/LuRsT/dragn"><img alt="Codecoverage" src="https://codecov.io/gh/LuRsT/dragn/branch/master/graph/badge.svg"></a>
     <a href="https://opensource.org/licenses/MIT"><img alt="Licence" src="https://img.shields.io/github/license/LuRsT/dragn.svg"></a>
     <a href="https://github.com/ambv/black"><img alt="Code style: Black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
-    <a href="https://pepy.tech/badge/dragn"><img alt="Downloads" src="https://pepy.tech/project/dragn"></a>
+    <a href="https://pepy.tech/badge/dragn"><img alt="Downloads" src="https://img.shields.io/pypi/dm/dragn.svg"></a>
 </p>
 
 ___
