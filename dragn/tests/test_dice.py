@@ -39,44 +39,44 @@ def D1() -> Generator:
     yield DieBuilder(1)
 
 
-class TestDieBuilderForMultiDie:
+class TestDieBuilderForTumbler:
     @staticmethod
-    def test_creating_multi_die_by_multiplication(D1: DieBuilder) -> None:
-        multi_die = D1 * 2
+    def test_creating_tumbler_by_multiplication(D1: DieBuilder) -> None:
+        tumbler = D1 * 2
 
-        assert multi_die() == (1, 1)
+        assert tumbler() == (1, 1)
 
     @staticmethod
-    def test_creating_multi_die_by_multiplication_in_different_order(
+    def test_creating_tumbler_by_multiplication_in_different_order(
         D1: DieBuilder
     ) -> None:
-        multi_die = 2 * D1
+        tumbler = 2 * D1
 
-        assert multi_die() == (1, 1)
+        assert tumbler() == (1, 1)
 
     @staticmethod
-    def test_creating_multi_die_by_addition(D1: DieBuilder) -> None:
+    def test_creating_tumbler_by_addition(D1: DieBuilder) -> None:
         with pytest.raises(TypeError):
             1 + D1
 
     @staticmethod
-    def test_creating_multi_die_by_addition_in_different_order(D1: DieBuilder) -> None:
+    def test_creating_tumbler_by_addition_in_different_order(D1: DieBuilder) -> None:
         with pytest.raises(TypeError):
             D1 + 1
 
     @staticmethod
-    def test_creating_multi_die_by_addition_with_another_die(D1: DieBuilder) -> None:
-        multi_die = D1 + D1
+    def test_creating_tumbler_by_addition_with_another_die(D1: DieBuilder) -> None:
+        tumbler = D1 + D1
 
-        assert multi_die() == (1, 1)
-
-    @staticmethod
-    def test_creating_multi_die_by_addition_with_another_dice(D1: DieBuilder) -> None:
-        multi_die = D1 + D1 + D1
-        assert multi_die() == (1, 1, 1)
+        assert tumbler() == (1, 1)
 
     @staticmethod
-    def test_creating_multi_die_by_multiplication_with_another_die(
+    def test_creating_tumbler_by_addition_with_another_dice(D1: DieBuilder) -> None:
+        tumbler = D1 + D1 + D1
+        assert tumbler() == (1, 1, 1)
+
+    @staticmethod
+    def test_creating_tumbler_by_multiplication_with_another_die(
         D1: DieBuilder
     ) -> None:
         with pytest.raises(TypeError):
@@ -84,12 +84,12 @@ class TestDieBuilderForMultiDie:
 
     @staticmethod
     def test_running_dice_with_multiplication_twice(D1: DieBuilder) -> None:
-        multi_die = 3 * D6
-        assert sum(multi_die()) >= 3 <= 6 * 3
-        assert sum(multi_die()) >= 3 <= 6 * 3
+        tumbler = 3 * D6
+        assert sum(tumbler()) >= 3 <= 6 * 3
+        assert sum(tumbler()) >= 3 <= 6 * 3
 
     @staticmethod
     def test_running_dice_with_addition_twice(D1: DieBuilder) -> None:
-        multi_die = D6 + D6
-        assert sum(multi_die()) >= 2 <= 6 * 2
-        assert sum(multi_die()) >= 2 <= 6 * 2
+        tumbler = D6 + D6
+        assert sum(tumbler()) >= 2 <= 6 * 2
+        assert sum(tumbler()) >= 2 <= 6 * 2
