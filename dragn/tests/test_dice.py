@@ -60,24 +60,18 @@ class TestDieBuilderForMultiDie:
             1 + D1
 
     @staticmethod
-    def test_creating_multi_die_by_addition_in_different_order(
-        D1: DieBuilder
-    ) -> None:
+    def test_creating_multi_die_by_addition_in_different_order(D1: DieBuilder) -> None:
         with pytest.raises(TypeError):
             D1 + 1
 
     @staticmethod
-    def test_creating_multi_die_by_addition_with_another_die(
-        D1: DieBuilder
-    ) -> None:
+    def test_creating_multi_die_by_addition_with_another_die(D1: DieBuilder) -> None:
         multi_die = D1 + D1
 
         assert multi_die() == (1, 1)
 
     @staticmethod
-    def test_creating_multi_die_by_addition_with_another_dice(
-        D1: DieBuilder
-    ) -> None:
+    def test_creating_multi_die_by_addition_with_another_dice(D1: DieBuilder) -> None:
         multi_die = D1 + D1 + D1
         assert multi_die() == (1, 1, 1)
 
