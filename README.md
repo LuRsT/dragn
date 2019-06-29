@@ -59,6 +59,9 @@ $ pip install dragn
 'You roll 4 dice and the results are (4, 3, 1, 2)'
 >>> f"You roll two dice and the results are {two_dice()}"
 'You roll two dice and the results are (3, 4)'
+>>> dice_tower = (D6 * 2) + D4
+>>> f"You roll two D6 and a D4 and check the results {dice_tower()}"
+'You roll two D6 and a D4 and check the results (2, 2, 6)'
 ```
 
 For more examples, check the [tests](https://github.com/LuRsT/dragn/blob/master/dragn/tests/test_dice.py)
