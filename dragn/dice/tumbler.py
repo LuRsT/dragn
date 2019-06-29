@@ -1,4 +1,5 @@
-from typing import Any, List, Tuple
+from itertools import chain
+from typing import Any, List, Tuple, Union
 
 
 class Tumbler:
@@ -8,6 +9,12 @@ class Tumbler:
 
     def __call__(self) -> Tuple[Any, ...]:
         raise NotImplementedError()
+
+    def __rmul__(self, other_value: Union[Any]) -> Any:
+        return MulTumbler([self for i in range(other_value)])
+
+    def __mul__(self, other_value: Union[Any]) -> Any:
+        return MulTumbler([self for i in range(other_value)])
 
 
 class SumTumbler(Tumbler):
@@ -30,8 +37,9 @@ class MulTumbler(Tumbler):
     def __init__(self, dice: List) -> None:
         super().__init__(dice)
 
-        if not len(self.callables) or not len(self.ints):
-            raise TypeError("Cannot multiply callables in MulTumbler")
-
     def __call__(self) -> Tuple[Any, ...]:
-        return tuple([self.callables[0]() for _ in range(self.ints[0])])
+        if self.ints and self.callables:
+            return tuple([self.callables[0]() for _ in range(self.ints[0])])
+        else:
+            results = chain.from_iterable([c() for c in self.callables])
+            return tuple(results)
