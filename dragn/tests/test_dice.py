@@ -100,3 +100,9 @@ class TestDieBuilderForTumbler:
         tumbler = (1 * D1) * 2
 
         assert tumbler() == (1, 1)
+
+    @staticmethod
+    def test_creating_tumbler_by_adding_a_tumbler(D1: DieBuilder) -> None:
+        tumbler = (1 * D1) + (1 * D1)
+
+        assert tumbler() == (1, 1)

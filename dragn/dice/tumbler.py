@@ -16,6 +16,9 @@ class Tumbler:
     def __mul__(self, other_value: Union[Any]) -> Any:
         return MulTumbler([self for i in range(other_value)])
 
+    def __add__(self, other_value: Union[Any]) -> Any:
+        return SumTumbler([self, other_value])
+
 
 class SumTumbler(Tumbler):
     def __init__(self, dice: List) -> None:
@@ -25,12 +28,15 @@ class SumTumbler(Tumbler):
             raise TypeError("Cannot use integers in SumTumbler")
 
     def __call__(self) -> Tuple[Any, ...]:
-        dice = [die for die in self.callables if not isinstance(die, SumTumbler)]
-        tumblers = [
-            tumbler for tumbler in self.callables if isinstance(tumbler, SumTumbler)
-        ]
+        def is_a_tumbler(d: Any) -> bool:
+            return isinstance(d, SumTumbler) or isinstance(d, MulTumbler)
 
-        return tuple([d() for d in dice]) + tuple(*[t() for t in tumblers])
+        dice = [c for c in self.callables if not is_a_tumbler(c)]
+        tumblers = [c for c in self.callables if is_a_tumbler(c)]
+
+        dice_results = tuple([d() for d in dice])
+        tumbler_results = tuple(chain.from_iterable([t() for t in tumblers]))
+        return dice_results + tumbler_results
 
 
 class MulTumbler(Tumbler):
