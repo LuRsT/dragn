@@ -76,13 +76,6 @@ class TestDieBuilderForTumbler:
         assert tumbler() == (1, 1, 1)
 
     @staticmethod
-    def test_creating_tumbler_by_multiplication_with_another_die(
-        D1: DieBuilder
-    ) -> None:
-        with pytest.raises(TypeError):
-            D1 * D1
-
-    @staticmethod
     def test_running_dice_with_multiplication_twice(D1: DieBuilder) -> None:
         tumbler = 3 * D6
         assert sum(tumbler()) >= 3 <= 6 * 3
@@ -93,3 +86,17 @@ class TestDieBuilderForTumbler:
         tumbler = D6 + D6
         assert sum(tumbler()) >= 2 <= 6 * 2
         assert sum(tumbler()) >= 2 <= 6 * 2
+
+    @staticmethod
+    def test_creating_tumbler_by_multiplying_a_tumbler(D1: DieBuilder) -> None:
+        tumbler = 2 * (1 * D1)
+
+        assert tumbler() == (1, 1)
+
+    @staticmethod
+    def test_creating_tumbler_by_multiplying_a_tumbler_other_way(
+        D1: DieBuilder
+    ) -> None:
+        tumbler = (1 * D1) * 2
+
+        assert tumbler() == (1, 1)
