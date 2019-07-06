@@ -45,7 +45,7 @@ class MulTumbler(Tumbler):
 
     def __call__(self) -> Tuple[Any, ...]:
         if self.ints and self.callables:
-            return tuple([self.callables[0]() for _ in range(self.ints[0])])
+            results = [self.callables[0]() for _ in range(self.ints[0])]
         else:
             results = chain.from_iterable([c() for c in self.callables])
-            return tuple(results)
+        return tuple(results)
