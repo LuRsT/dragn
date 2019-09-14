@@ -1,7 +1,7 @@
 from typing import Generator
 
 import pytest
-
+from dragn import dice
 from dragn.dice import D4, D6, D8, D10, D12, D20
 from dragn.dice.die import DieBuilder
 
@@ -33,6 +33,16 @@ class TestDie:
             assert die() in results_range
             assert die.max_value == max(list(results_range))
             assert str(die) == f"D{die.max_value}"
+
+    @staticmethod
+    def test_zero_sided_dice() -> None:
+        with pytest.raises(ValueError):
+            dice.D0
+
+    @staticmethod
+    def test_non_die_attribute_request() -> None:
+        with pytest.raises(AttributeError):
+            dice.D
 
 
 @pytest.fixture
