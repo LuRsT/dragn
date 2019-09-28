@@ -10,7 +10,7 @@ matrix:
 
 install:
   - pip install -U pip
-  - pip install -U flake8 pytest pytest-cov codecov
+  - pip install -U black flake8 pytest pytest-cov codecov
 
 script:
   # Unit tests
@@ -18,6 +18,9 @@ script:
 
   # Static analysis
   - flake8 --statistics --count
+
+  # Code formatting
+  - black --check .
 
 after_success:
   # Send coverage to Codecov
