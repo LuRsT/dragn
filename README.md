@@ -47,7 +47,7 @@ $ pip install dragn
 ### How to use
 
 ```python
->> from dragn.dice import D4, D6, D8
+>> from dragn.dice import D4, D6, D8, D10
 >>> D6()
 1
 >>> f"You roll the die and the result is {D8()}"
@@ -62,6 +62,11 @@ $ pip install dragn
 >>> dice_tower = (D6 * 2) + D4
 >>> f"You roll two D6 and a D4 and check the results {dice_tower()}"
 'You roll two D6 and a D4 and check the results (2, 2, 6)'
+>>> five_dice = D10 * 5
+>>> f"You roll five D10 and the lowest dice was a {min(five_dice())}"
+'You roll five D10 and the lowest dice was a 4'
+>>> f"You roll five D10 and the highest dice was a {max(five_dice())}"
+'You roll five D10 and the highest dice was a 6'
 ```
 
 For more examples, check the [tests](https://github.com/LuRsT/dragn/blob/master/dragn/tests/test_dice.py)
