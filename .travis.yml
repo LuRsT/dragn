@@ -10,7 +10,7 @@ matrix:
 
 install:
     - pip install -U pip
-    - pip install -U black flake8 pytest pytest-cov codecov mypy
+    - pip install -U black flake8 pytest pytest-cov codecov mypy sphinx
 
 script:
     # Mypy
@@ -23,7 +23,7 @@ script:
     - flake8 --statistics --count
 
     # Code formatting
-    - black --check .
+    - black --exclude docs --check .
 
 after_success:
     # Send coverage to Codecov
