@@ -59,7 +59,7 @@ class TestDieBuilderForTumbler:
 
     @staticmethod
     def test_creating_tumbler_by_multiplication_in_different_order(
-        D1: DieBuilder
+        D1: DieBuilder,
     ) -> None:
         tumbler = 2 * D1
 
@@ -106,7 +106,7 @@ class TestDieBuilderForTumbler:
 
     @staticmethod
     def test_creating_tumbler_by_multiplying_a_tumbler_other_way(
-        D1: DieBuilder
+        D1: DieBuilder,
     ) -> None:
         tumbler = (1 * D1) * 2
 
